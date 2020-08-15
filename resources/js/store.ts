@@ -6,15 +6,16 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     breadcrumbs: [],
+    callToAction: null,
     showLoader: false,
-    dialog: {
-      show: false,
-      title: '',
-      type: '',
-      icon: '',
-      okayCallback: () => {},
-      cancelCallback: () => {}
-    }
+    dialog: null,
+    snackbar: {
+      color: null,
+      message: null,
+      timeout: 5000,
+      show: false
+    },
+    user: {}
   },
   mutations: {
     showLoader(state) {
@@ -22,11 +23,35 @@ export default new Vuex.Store({
     },
     hideLoader(state) {
       state.showLoader = false;
+    },
+    setUser(state, user) {
+      state.user = user;
+    },
+    setBreadcrumbs(state, breadcrumbs) {
+      state.breadcrumbs = breadcrumbs;
+    },
+    setCallToAction(state, callToAction) {
+      state.callToAction = callToAction;
+    },
+    setSnackbar(state, snackbar) {
+      state.snackbar = snackbar;
     }
   },
   getters: {
     getShowLoader(state) {
       return state.showLoader;
+    },
+    getUser(state) {
+      return state.user;
+    },
+    getBreadcrumbs(state) {
+      return state.breadcrumbs;
+    },
+    getCallToAction(state) {
+      return state.callToAction;
+    },
+    getSnackbar(state) {
+      return state.snackbar;
     }
   }
 });

@@ -13,8 +13,25 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'HomeController@site')->name('site.home');
+Route::get('/', 'HomeController@site')->name('user.home');
 
-Auth::routes();
+Route::get('/login', 'LoginController@form')->name('login');
+Route::post('/login', 'LoginController@login');
 
-Route::middleware(['auth'])->get('/{any}', 'HomeController@vue')->name('vue.routes');
+Route::get('/register', 'RegisterController@form')->name('register');
+Route::post('/register', 'RegisterController@register');
+
+Route::post('/password/request', 'PasswordController@request')->name('password.request');
+
+Route::post('/logout', 'LogoutController@logout')->name('logout');
+
+Route::middleware(['auth', 'admin'])->group(function() {
+  Route::get('/home', 'HomeController@vue')->name('admin.home');
+  Route::get('/users', 'HomeController@vue')->name('admin.users');
+  Route::get('/users/create', 'HomeController@vue')->name('admin.users.create');
+  Route::get('/users/edit/{id}', 'HomeController@vue')->name('admin.users.edit');
+});
+
+Route::get('/test/users', function() {
+  return \App\Http\Models\User::all();
+});

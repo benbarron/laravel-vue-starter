@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
-use App\Components\MenuItem;
-use Auth;
 
 class HomeController extends Controller
 {
@@ -21,20 +20,24 @@ class HomeController extends Controller
     /**
      * Show the vue application dashboard.
      *
-     * @return \Illuminate\Contracts\Support\Renderable
+     * @param Request $request
+     * @return Renderable
      */
-    public function vue()
+    public function vue(Request $request)
     {
-        return view('admin.layout');
+        return view('admin.layout', [
+            'token' => $request->user()->api_token,
+            'name' => config('app.name', 'Laravel')
+        ]);
     }
 
     /**
     * Show the landing page
     *
-    * @return \Illuminate\Contracts\Support\Renderable
+    * @return Renderable
     */
     public function site()
     {
-    return view('site.home');
+        return view('site.home');
     }
 }

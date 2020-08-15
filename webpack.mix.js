@@ -12,21 +12,25 @@ const mix = require('laravel-mix');
  */
 
 mix.webpackConfig({
-    module: {
-        rules: [{
-            test: /\.tsx?$/,
-            loader: 'ts-loader',
-            exclude: /node_modules/,
-            options: {
-                appendTsSuffixTo: [/\.vue$/]
-            }
-        }]
-    },
-    resolve: {
-        extensions: ['*', '.js', '.jsx', '.vue', '.ts', '.tsx']
-    }
+  module: {
+    rules: [
+      {
+        test: /\.tsx?$/,
+        loader: 'ts-loader',
+        exclude: /node_modules/,
+        options: {
+          appendTsSuffixTo: [/\.vue$/]
+        }
+      }
+    ]
+  },
+  resolve: {
+    extensions: ['*', '.js', '.jsx', '.vue', '.ts', '.tsx']
+  }
 });
 
 mix
-    .js('resources/js/index.ts', 'public/js/app.js')
-    .sass('resources/sass/app.scss', 'public/css/app.css');
+  .js('resources/js/index.ts', 'public/js/app.js')
+  .sass('resources/sass/admin/main.scss', 'public/css/admin.css')
+  .sass('resources/sass/auth/main.scss', 'public/css/auth.css')
+  .sass('resources/sass/site/main.scss', 'public/css/site.css');

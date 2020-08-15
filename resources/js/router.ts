@@ -3,6 +3,8 @@ import VueRouter from 'vue-router';
 import store from './store';
 import Home from './pages/Home.vue';
 import Users from './pages/Users.vue';
+import UsersCreate from './pages/UsersCreate.vue';
+import UsersEdit from './pages/UsersEdit.vue';
 
 Vue.use(VueRouter);
 
@@ -20,6 +22,20 @@ const routes = [
     icon: 'people',
     name: 'admin.users',
     component: Users
+  },
+  {
+    label: 'Create User',
+    path: '/users/create',
+    icon: null,
+    name: 'admin.users.create',
+    component: UsersCreate
+  },
+  {
+    label: 'Edit User',
+    path: '/users/edit/:id',
+    icon: null,
+    name: 'admin.users.edit',
+    component: UsersEdit
   }
 ];
 

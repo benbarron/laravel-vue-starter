@@ -6,11 +6,11 @@ import Vuetify from 'vuetify';
 import VueProgressBar from 'vue-progressbar';
 import Root from './components/Root.vue';
 import store from './store';
-import { router } from './router';
 import AxiosDetect from './utils/AxiosDetect';
+import { router } from './router';
 
 Vue.use(Vuetify);
-
+Vue.component('root', Root);
 Vue.use(VueProgressBar, {
   color: '#3f51b5',
   failedColor: '#b71c1c',
@@ -23,8 +23,6 @@ Vue.use(VueProgressBar, {
   autoRevert: true,
   inverse: false
 });
-
-Vue.component('root', Root);
 
 const vuetify = new Vuetify({
   theme: {
@@ -51,8 +49,14 @@ const app: Vue = new Vue({
   vuetify,
   mounted() {
     AxiosDetect.init(
-      () => this.$Progress.start(),
-      () => this.$Progress.finish()
+      () => {
+        // this.$Progress.start();
+        this.$store.commit('showLoader');
+      },
+      () => {
+        // this.$Progress.finish();
+        this.$store.commit('hideLoader');
+      }
     );
   }
 });
