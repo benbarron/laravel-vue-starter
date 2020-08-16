@@ -3595,6 +3595,17 @@ var __extends = (undefined && undefined.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+var __assign = (undefined && undefined.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3679,7 +3690,7 @@ var Users = (function (_super) {
                 value: 'updated_at'
             },
             {
-                text: 'Role(1=admin)',
+                text: 'User Type',
                 align: 'start',
                 sortable: false,
                 value: 'role'
@@ -3704,14 +3715,13 @@ var Users = (function (_super) {
     };
     Users.prototype.fetchUsers = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var _a;
-            return __generator(this, function (_b) {
-                switch (_b.label) {
-                    case 0:
-                        _a = this;
-                        return [4, this.userService.getAllUsers()];
+            var users;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4, this.userService.getAllUsers()];
                     case 1:
-                        _a.users = _b.sent();
+                        users = _a.sent();
+                        this.users = users.map(function (user) { return (__assign(__assign({}, user), { role: user.role ? 'Admin' : 'Non Admin' })); });
                         return [2];
                 }
             });

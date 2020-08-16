@@ -67,7 +67,7 @@ export default class Users extends Vue {
             value: 'updated_at'
         },
         {
-            text: 'Role(1=admin)',
+            text: 'User Type',
             align: 'start',
             sortable: false,
             value: 'role'
@@ -85,7 +85,11 @@ export default class Users extends Vue {
     }
 
     async fetchUsers() {
-        this.users = await this.userService.getAllUsers();
+        const users: any[] = await this.userService.getAllUsers();
+        this.users = users.map((user: any) => ({
+            ...user,
+            role: user.role ? 'Admin' : 'Non Admin'
+        }));
     }
 
     handleRowClick(user: any) {
