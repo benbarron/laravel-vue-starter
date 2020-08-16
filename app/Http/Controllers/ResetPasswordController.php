@@ -25,7 +25,7 @@ class ResetPasswordController extends Controller
 
     public function __construct(ResetPasswordService $resetPasswordService, UserService $userService)
     {
-        $this->$resetPasswordService = $resetPasswordService;
+        $this->resetPasswordService = $resetPasswordService;
         $this->userService = $userService;
     }
 

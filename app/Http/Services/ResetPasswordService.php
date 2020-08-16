@@ -8,10 +8,20 @@ use App\Notifications\PasswordResetNotification;
 use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Str;
 
+/**
+ * Class ResetPasswordService
+ * @package App\Http\Services
+ */
 class ResetPasswordService
 {
+    /**
+     * @var mixed
+     */
     protected $redisClient;
 
+    /**
+     * ResetPasswordService constructor.
+     */
     public function __construct()
     {
         $this->redisClient = Redis::connection('password_reset')->client();
