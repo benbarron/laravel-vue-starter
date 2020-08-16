@@ -7,6 +7,37 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 </p>
 
+## Installation
+
+Only requirement is that you have docker and docker-compose installed and running on your local system.
+
+##### Clone the git repository
+```shell script
+$ git clone https://github.com/benbarron/laravel-vue-starter.git
+```
+
+##### Create an env file and file in the values
+```shell script
+$ cp .env.example .env 
+```
+
+##### Start Services
+```shell script
+$ docker-compose up -d --build
+```
+
+##### Install composer packages
+```shell script
+$ docker-compose run --rm composer install
+```
+
+##### Migrate the database 
+```shell script
+$ docker-compose run --rm artisan migrate
+```
+
+<p>You can then view your application at <a href="http://localhost:8080">http://localhost:8080</a></p>
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
@@ -30,19 +61,6 @@ If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Lar
 ## Laravel Sponsors
 
 We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[OP.GG](https://op.gg)**
 
 ## Contributing
 
