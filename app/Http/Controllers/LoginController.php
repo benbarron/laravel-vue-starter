@@ -2,23 +2,33 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\LoginUserRequest;
-use Exception;
-use Auth;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
 use Illuminate\View\View;
+use App\Http\Requests\LoginUserRequest;
+use Exception;
+use Auth;
 
 class LoginController extends Controller
 {
     /**
+     * @param Request $request
      * @return Application|Factory|View
      */
-	public function form()
+	public function form(Request $request)
     {
-	    return view('auth.login');
+        if(!Auth::check()) {
+            return view('auth.login');
+        }
+
+        if($request->user()->role == 1) {
+            return redirect('/home');
+        }
+
+        return redirect('/');
 	}
 
     /**
@@ -35,6 +45,7 @@ class LoginController extends Controller
                 'password' => 'Invalid credentials'
             ]);
         } catch(Exception $e) {
+            dd($e);
             return back()->withInput()->withErrors([
                 'password' => 'There was an error logging you in.'
             ]);

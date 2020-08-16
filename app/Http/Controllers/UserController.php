@@ -12,6 +12,11 @@ use App\Http\Models\User;
 use Exception;
 use Illuminate\Http\Response;
 
+/**
+ * Class UserController
+ * @package App\Http\Controllers
+ * @property UserService $userService
+ */
 class UserController extends Controller
 {
 
@@ -23,7 +28,7 @@ class UserController extends Controller
     /**
      * @param UserService $userService
      */
-    public function __constructor(UserService $userService)
+    public function __construct(UserService $userService)
     {
         $this->userService = $userService;
     }
@@ -54,7 +59,7 @@ class UserController extends Controller
     public function findById(Request $request, $id)
     {
         try {
-            $user = User::where('id', '=', $id)->firstOrFail();
+            $user = User::where('id', '=', $id)->firstOrFail()->format();
             return response($user, 200);
         } catch (Exception $e) {
             return response([
@@ -94,10 +99,10 @@ class UserController extends Controller
     public function update(UpdateUserRequest $request, $id)
     {
         try {
-            $this->userService->update($id, $request->name, $request->email);
+            $this->userService->update($id, $request->name, $request->email, $request->role);
             return response(['message' => 'User has been updated'], 201);
         } catch (Exception $e) {
-            return response(['message' => 'Error updating user'], 501);
+            return response(['message' => $e->getMessage()], 501);
         }
     }
 }

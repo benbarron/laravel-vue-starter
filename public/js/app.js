@@ -2073,7 +2073,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.v-card-body[data-v-d0f667aa] {\n  padding: 25px;\n}\n.v-input[data-v-d0f667aa] {\n  margin-bottom: 20px;\n}\n", ""]);
+exports.push([module.i, "\n.v-card-body[data-v-d0f667aa] {\n    padding: 25px;\n}\n.v-input[data-v-d0f667aa] {\n    margin-bottom: 20px;\n}\n", ""]);
 
 // exports
 
@@ -2092,7 +2092,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.v-card-body[data-v-37afc80e] {\n  padding: 25px;\n}\n.v-input[data-v-37afc80e] {\n  margin-bottom: 20px;\n}\n", ""]);
+exports.push([module.i, "\n.v-card-body[data-v-37afc80e] {\n    padding: 25px;\n}\n.v-input[data-v-37afc80e] {\n    margin-bottom: 20px;\n}\n", ""]);
 
 // exports
 
@@ -3595,17 +3595,6 @@ var __extends = (undefined && undefined.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var __assign = (undefined && undefined.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3678,10 +3667,22 @@ var Users = (function (_super) {
                 value: 'email'
             },
             {
-                text: 'Date Created',
+                text: 'Created',
                 align: 'start',
                 sortable: false,
                 value: 'created_at'
+            },
+            {
+                text: 'Updated',
+                align: 'start',
+                sortable: false,
+                value: 'updated_at'
+            },
+            {
+                text: 'Role(1=admin)',
+                align: 'start',
+                sortable: false,
+                value: 'role'
             }
         ];
         _this.userService = new _services_user_service__WEBPACK_IMPORTED_MODULE_3__["default"]();
@@ -3703,13 +3704,14 @@ var Users = (function (_super) {
     };
     Users.prototype.fetchUsers = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var users;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4, this.userService.getAllUsers()];
+            var _a;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        _a = this;
+                        return [4, this.userService.getAllUsers()];
                     case 1:
-                        users = _a.sent();
-                        this.users = users.map(function (user) { return (__assign(__assign({}, user), { created_at: new Date(user.created_at).toLocaleString() })); });
+                        _a.users = _b.sent();
                         return [2];
                 }
             });
@@ -3824,6 +3826,7 @@ var UsersCreate = (function (_super) {
         _this.name = '';
         _this.email = '';
         _this.password = '';
+        _this.role = 0;
         _this.userService = new _services_user_service__WEBPACK_IMPORTED_MODULE_2__["default"]();
         return _this;
     }
@@ -3842,22 +3845,25 @@ var UsersCreate = (function (_super) {
                         }
                         _b.label = 1;
                     case 1:
-                        _b.trys.push([1, 3, , 4]);
+                        _b.trys.push([1, 4, , 5]);
                         return [4, this.userService.createUser({
                                 name: this.name,
                                 email: this.email,
+                                role: this.role,
                                 password: this.password
                             })];
                     case 2:
                         res = _b.sent();
                         this.success(res.message);
-                        this.$router.push('/users');
-                        return [3, 4];
+                        return [4, this.$router.push('/users')];
                     case 3:
+                        _b.sent();
+                        return [3, 5];
+                    case 4:
                         err_1 = _b.sent();
                         this.error(err_1.message);
-                        return [3, 4];
-                    case 4: return [2];
+                        return [3, 5];
+                    case 5: return [2];
                 }
             });
         });
@@ -3919,8 +3925,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vue_class_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-class-component */ "./node_modules/vue-class-component/dist/vue-class-component.esm.js");
-/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../store */ "./resources/js/store.ts");
-/* harmony import */ var _services_user_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../services/user-service */ "./resources/js/services/user-service.ts");
+/* harmony import */ var _services_user_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../services/user-service */ "./resources/js/services/user-service.ts");
+/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./../store */ "./resources/js/store.ts");
 var __extends = (undefined && undefined.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -3987,7 +3993,8 @@ var UsersEdit = (function (_super) {
         _this.id = _this.$router.currentRoute.params.id;
         _this.name = '';
         _this.email = '';
-        _this.userService = new _services_user_service__WEBPACK_IMPORTED_MODULE_3__["default"]();
+        _this.role = 0;
+        _this.userService = new _services_user_service__WEBPACK_IMPORTED_MODULE_2__["default"]();
         return _this;
     }
     UsersEdit.prototype.mounted = function () {
@@ -4014,6 +4021,7 @@ var UsersEdit = (function (_super) {
                         user = _a.sent();
                         this.name = user.name;
                         this.email = user.email;
+                        this.role = user.role;
                         return [2];
                 }
             });
@@ -4021,23 +4029,51 @@ var UsersEdit = (function (_super) {
     };
     UsersEdit.prototype.updateUser = function () {
         return __awaiter(this, void 0, void 0, function () {
+            var res, e_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4, this.userService.updateUser(this.id, {
-                            name: this.name,
-                            email: this.email
-                        })];
+                    case 0:
+                        _a.trys.push([0, 3, , 4]);
+                        return [4, this.userService.updateUser(this.id, {
+                                name: this.name,
+                                email: this.email,
+                                role: this.role
+                            })];
                     case 1:
+                        res = _a.sent();
+                        this.success(res.message);
+                        return [4, this.$router.push('/users')];
+                    case 2:
                         _a.sent();
-                        this.$router.push('/users');
-                        return [2];
+                        return [3, 4];
+                    case 3:
+                        e_1 = _a.sent();
+                        this.error(e_1.message);
+                        return [3, 4];
+                    case 4: return [2];
                 }
             });
         });
     };
+    UsersEdit.prototype.error = function (message) {
+        _store__WEBPACK_IMPORTED_MODULE_3__["default"].commit('setSnackbar', {
+            color: '#aa0000',
+            message: message,
+            timeout: 5000,
+            show: true
+        });
+    };
+    UsersEdit.prototype.success = function (message) {
+        _store__WEBPACK_IMPORTED_MODULE_3__["default"].commit('setSnackbar', {
+            color: '#27ae60',
+            message: message,
+            timeout: 5000,
+            show: true
+        });
+    };
     UsersEdit.prototype.configureBreadcrumbs = function () {
-        _store__WEBPACK_IMPORTED_MODULE_2__["default"].commit('setCallToAction', null);
-        _store__WEBPACK_IMPORTED_MODULE_2__["default"].commit('setBreadcrumbs', [
+        _store__WEBPACK_IMPORTED_MODULE_3__["default"].commit('setCallToAction', null);
+        _store__WEBPACK_IMPORTED_MODULE_3__["default"].commit('setBreadcrumbs', [
             {
                 href: '/home',
                 text: 'Home'
@@ -4811,7 +4847,9 @@ var render = function() {
         _c("div", [
           _c("h2", [_vm._v("Hello, You're logged in as:")]),
           _vm._v(" "),
-          _c("h2", [_vm._v(_vm._s(_vm.user.name))])
+          _c("h2", [_vm._v(_vm._s(_vm.user.name))]),
+          _vm._v(" "),
+          _c("h2", [_vm._v(_vm._s(_vm.user.email))])
         ])
       ]
     )
@@ -4849,7 +4887,7 @@ var render = function() {
           _c(
             "v-card-title",
             [
-              _vm._v("\n      Users\n      "),
+              _vm._v("\n            Users\n            "),
               _c("v-spacer"),
               _vm._v(" "),
               _c("v-text-field", {
@@ -4920,7 +4958,7 @@ var render = function() {
           _c(
             "v-card-title",
             [
-              _vm._v("\n      Create User\n      "),
+              _vm._v("\n            Create User\n            "),
               _c("v-spacer"),
               _vm._v(" "),
               _c(
@@ -4936,7 +4974,7 @@ var render = function() {
                     }
                   }
                 },
-                [_vm._v("\n        Submit\n      ")]
+                [_vm._v("\n                Submit\n            ")]
               )
             ],
             1
@@ -4991,6 +5029,17 @@ var render = function() {
                   },
                   expression: "password"
                 }
+              }),
+              _vm._v(" "),
+              _c("v-switch", {
+                attrs: { label: "Is Admin" },
+                model: {
+                  value: _vm.role,
+                  callback: function($$v) {
+                    _vm.role = $$v
+                  },
+                  expression: "role"
+                }
               })
             ],
             1
@@ -5034,7 +5083,7 @@ var render = function() {
           _c(
             "v-card-title",
             [
-              _vm._v("\n      Update User\n      "),
+              _vm._v("\n            Update User\n            "),
               _c("v-spacer"),
               _vm._v(" "),
               _c(
@@ -5050,7 +5099,7 @@ var render = function() {
                     }
                   }
                 },
-                [_vm._v("\n        Update\n      ")]
+                [_vm._v("\n                Update\n            ")]
               )
             ],
             1
@@ -5088,6 +5137,17 @@ var render = function() {
                     _vm.email = $$v
                   },
                   expression: "email"
+                }
+              }),
+              _vm._v(" "),
+              _c("v-switch", {
+                attrs: { label: "Is Admin" },
+                model: {
+                  value: _vm.role,
+                  callback: function($$v) {
+                    _vm.role = $$v
+                  },
+                  expression: "role"
                 }
               })
             ],

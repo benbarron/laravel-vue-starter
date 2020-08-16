@@ -37,6 +37,14 @@ services:
     networks:
       - laravel
 
+  redis:
+      container_name: redis
+      image: redis:alpine
+      restart: unless-stopped
+      tty: true
+      networks:
+        - laravel
+
   php:
     container_name: php
     build:
@@ -81,3 +89,5 @@ services:
     entrypoint: ['php', '/var/www/html/artisan']
     networks:
       - laravel
+
+

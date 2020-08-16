@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\Routing\Redirector;
+use Illuminate\View\View;
 use App\Http\Requests\RegisterUserRequest;
 use App\Http\Services\UserService;
 use Exception;
 use Auth;
-use Illuminate\Contracts\Foundation\Application;
-use Illuminate\Contracts\View\Factory;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Routing\Redirector;
-use Illuminate\View\View;
 
 class RegisterController extends Controller
 {
@@ -31,9 +32,17 @@ class RegisterController extends Controller
     /**
      * @return Application|Factory|View
      */
-    public function form()
+    public function form(Request $request)
     {
-        return view('auth.register');
+        if(!Auth::check()) {
+            return view('auth.register');
+        }
+
+        if($request->user()->role == 1) {
+            return redirect('/home');
+        }
+
+        return redirect('/');
     }
 
     /**
@@ -43,7 +52,7 @@ class RegisterController extends Controller
     public function register(RegisterUserRequest $request)
     {
         if ($request->password != $request->password_confirmation) {
-            return back()->withErrors([
+            return back()->withInput()->withErrors([
                 'password' => 'Passwords must match'
             ]);
         }
@@ -52,7 +61,9 @@ class RegisterController extends Controller
             Auth::login($user);
             return redirect('/home');
         } catch (Exception $e) {
-            return back()->withInput();
+            return back()->withInput()->withErrors([
+                'email' => 'There is already an account with this email'
+            ]);
         }
     }
 }

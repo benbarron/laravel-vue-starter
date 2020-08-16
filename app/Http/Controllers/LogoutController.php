@@ -12,8 +12,16 @@ class LogoutController extends Controller
     /**
      * @return Application|ResponseFactory|Response
      */
-    public function logout() {
+    public function post()
+    {
         Auth::logout();
         return response([], 200);
     }
+
+    public function get()
+    {
+        Auth::logout();
+        return view('auth.login');
+    }
+
 }

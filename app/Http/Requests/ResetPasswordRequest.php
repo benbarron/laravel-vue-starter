@@ -5,14 +5,13 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 
 /**
- * Class CreateUserRequest
+ * Class ResetPasswordRequest
  * @package App\Http\Requests
- * @property string name
- * @property string email
  * @property string password
- * @property string password_confirmation
+ * @property string token
+ * @property mixed userId
  */
-class RegisterUserRequest extends FormRequest
+class ResetPasswordRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -32,10 +31,9 @@ class RegisterUserRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
-            'email' => 'required',
+            'userId' => 'required',
             'password' => 'required',
-            'password_confirmation' => 'required'
+            'token' => 'required'
         ];
     }
 }

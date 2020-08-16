@@ -17,7 +17,7 @@ class Admin
     public function handle(Request $request, Closure $next)
     {
         if($request->user()->role == 0) {
-            return redirect('/login');
+            return redirect('/');
         }
         return $next($request);
     }

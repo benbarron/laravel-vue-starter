@@ -13,25 +13,31 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+/**
+ * Routes for registration and logging user in
+ */
 Route::get('/', 'HomeController@site')->name('user.home');
-
 Route::get('/login', 'LoginController@form')->name('login');
 Route::post('/login', 'LoginController@login');
-
 Route::get('/register', 'RegisterController@form')->name('register');
 Route::post('/register', 'RegisterController@register');
+Route::post('/logout', 'LogoutController@post')->name('logout.post');
+Route::get('/logout', 'LogoutController@get')->name('logout.get');
+/**
+ * Routes for requesting for a password reset link to be sent to your email,
+ * verifying and finally updating password
+ */
+Route::get('/password/forgot', 'ForgotPasswordController@show');
+Route::post('/password/forgot', 'ForgotPasswordController@send');
+Route::get('/password/reset/{token}/{id}', 'ResetPasswordController@show');
+Route::post('/password/reset', 'ResetPasswordController@update');
 
-Route::post('/password/request', 'PasswordController@request')->name('password.request');
-
-Route::post('/logout', 'LogoutController@logout')->name('logout');
-
+/**
+ * Routes for logged in admin
+ */
 Route::middleware(['auth', 'admin'])->group(function() {
   Route::get('/home', 'HomeController@vue')->name('admin.home');
   Route::get('/users', 'HomeController@vue')->name('admin.users');
   Route::get('/users/create', 'HomeController@vue')->name('admin.users.create');
   Route::get('/users/edit/{id}', 'HomeController@vue')->name('admin.users.edit');
-});
-
-Route::get('/test/users', function() {
-  return \App\Http\Models\User::all();
 });

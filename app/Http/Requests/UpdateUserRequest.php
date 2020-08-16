@@ -5,11 +5,15 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Request;
 
+/**
+ * Class UpdateUserRequest
+ * @package App\Http\Requests
+ * @property string $name
+ * @property string $email
+ * @property integer $role
+ */
 class UpdateUserRequest extends FormRequest
 {
-    public $name;
-    public $email;
-
     /**
      * Determine if the user is authorized to make this request.
      *
