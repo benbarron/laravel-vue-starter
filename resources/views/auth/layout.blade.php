@@ -6,40 +6,26 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
     <title>{{ config('app.name', 'Laravel') }}</title>
     <link rel="stylesheet" href="{{ asset('css/auth.css') }}">
 </head>
 
 <body>
-    <div id="app">
-        <nav class="navbar navbar-default navbar-static-top">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                        data-target="#app-navbar-collapse">
-                        <span class="sr-only">Toggle Navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
-                    </a>
-                </div>
-
-                <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                    <ul class="nav navbar-nav">
-                        &nbsp;
-                    </ul>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="{{ url('/login') }}">Login</a></li>
-                        <li><a href="{{ url('/register') }}">Register</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        @yield('content')
-    </div>
+   <div class="container">
+       <nav class="nav">
+           <div class="nav-left">
+               <a href="{{ url('/') }}" class="branding">{{ env('APP_NAME') }}</a>
+           </div>
+           <div class="nav-right">
+               <ul>
+                   <li><a href="{{ url('/login') }}">Login</a></li>
+                   <li><a href="{{ url('/register') }}">Register</a></li>
+               </ul>
+           </div>
+       </nav>
+   </div>
+    @yield('content')
 </body>
 
 </html>

@@ -66386,10 +66386,10 @@ var AxiosDetect = (function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/benbarron/apps/laravel-starter/resources/js/index.ts */"./resources/js/index.ts");
-__webpack_require__(/*! /Users/benbarron/apps/laravel-starter/resources/sass/admin/main.scss */"./resources/sass/admin/main.scss");
-__webpack_require__(/*! /Users/benbarron/apps/laravel-starter/resources/sass/auth/main.scss */"./resources/sass/auth/main.scss");
-module.exports = __webpack_require__(/*! /Users/benbarron/apps/laravel-starter/resources/sass/site/main.scss */"./resources/sass/site/main.scss");
+__webpack_require__(/*! /var/www/html/resources/js/index.ts */"./resources/js/index.ts");
+__webpack_require__(/*! /var/www/html/resources/sass/admin/main.scss */"./resources/sass/admin/main.scss");
+__webpack_require__(/*! /var/www/html/resources/sass/auth/main.scss */"./resources/sass/auth/main.scss");
+module.exports = __webpack_require__(/*! /var/www/html/resources/sass/site/main.scss */"./resources/sass/site/main.scss");
 
 
 /***/ })

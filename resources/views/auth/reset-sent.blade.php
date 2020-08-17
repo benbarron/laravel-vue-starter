@@ -3,10 +3,13 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+            <div class="col-sm-10 offset-sm-1 col-md-8 offset-md-2">
                 <div class="alert alert-success mt-5">
-                    <b>Success</b> - If an account exists with {{ $email  }}, then we will
-                    send an email with password reset instructions. <a href="{{ url('/login') }}">Back To Login</a>
+                    <p>
+                        <b>Success!</b> <small>If an account exists with {{ $email  }},
+                            then we will send an email with password reset instructions.
+                            <a href="{{ url('/login') }}">Back To Login</a></small>
+                    </p>
                 </div>
             </div>
         </div>

@@ -1,0 +1,42 @@
+nav {
+  height: 70px;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 0.2px lighten(#636b6f, 10) solid;
+
+  .nav-left {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    a {
+      padding: 10px;
+      font-size: 24px;
+      color: #636b6f;
+      font-weight: 800;
+      text-decoration: none;
+    }
+  }
+
+  .nav-right {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    ul {
+      margin: 0;
+      display: flex;
+      li {
+        text-decoration: none;
+        list-style: none;
+        margin: 10px;
+        a {
+          font-weight: 600;
+          color: #636b6f;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}
