@@ -9,15 +9,22 @@ export default new Vuex.Store({
     callToAction: null,
     showLoader: false,
     dialog: null,
+    callInvites: [],
     snackbar: {
       color: null,
       message: null,
-      timeout: 5000,
+      timeout: 6000,
       show: false
     },
     user: {}
   },
   mutations: {
+    addInvite(state, invite) {
+      state.callInvites.push(invite as never);
+    },
+    removeInvite(state, inviteId) {
+      state.callInvites = state.callInvites.filter((invite: any) => invite.call_id === inviteId);
+    },
     showLoader(state) {
       state.showLoader = true;
     },
@@ -38,6 +45,9 @@ export default new Vuex.Store({
     }
   },
   getters: {
+    getInvites(state) {
+      return state.callInvites;
+    },
     getShowLoader(state) {
       return state.showLoader;
     },

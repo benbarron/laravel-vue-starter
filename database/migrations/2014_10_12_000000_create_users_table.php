@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
             $table->string('api_token', 80)->unique()->nullable();
+            $table->string('room_id', 20)->uniqid()->nullable();
             $table->integer('role')->default(0);
             $table->softDeletes();
         });

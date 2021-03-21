@@ -35,9 +35,13 @@ Route::post('/password/reset', 'ResetPasswordController@update');
 /**
  * Routes for logged in admin
  */
-Route::middleware(['auth', 'admin'])->group(function() {
-  Route::get('/home', 'HomeController@vue')->name('admin.home');
-  Route::get('/users', 'HomeController@vue')->name('admin.users');
+Route::middleware(['auth'])->group(function () {
+  Route::get('/home', 'HomeController@vue')->name('dashboard.home');
+  Route::get('/users', 'HomeController@vue')->name('dashboard.users');
+  Route::get('/meeting', 'HomeController@vue')->name('dashboard.meeting');
+});
+
+Route::middleware(['auth', 'admin'])->group(function () {
   Route::get('/users/create', 'HomeController@vue')->name('admin.users.create');
   Route::get('/users/edit/{id}', 'HomeController@vue')->name('admin.users.edit');
 });

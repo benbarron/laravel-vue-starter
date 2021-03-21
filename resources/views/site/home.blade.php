@@ -1,6 +1,17 @@
-@extends('site.layout')
+<!doctype html>
+<html lang="{{ app()->getLocale() }}">
 
-@section('content')
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Laravel</title>
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="{{ asset('css/site.css') }}">
+</head>
+
+<body>
     <div>
         <div class="container">
             <nav class="nav">
@@ -10,11 +21,8 @@
                 <div class="nav-right">
                     <ul>
                         @auth
-                            @if(Auth::user()->role == 1)
-                                <li><a href="{{ url('/home') }}">Admin Home</a></li>
-                            @else
-                                <li><a href="{{ url('/logout') }}">Logout</a></li>
-                            @endif
+                            <li><a href="{{ url('/home') }}">Dashboard</a></li>
+                            <li><a href="{{ url('/logout') }}">Logout</a></li>
                         @else
                             <li><a href="{{ url('/login') }}">Login</a></li>
                             <li><a href="{{ url('/register') }}">Register</a></li>
@@ -36,4 +44,6 @@
             </div>
         </div>
     </div>
-@endsection
+</body>
+
+</html>

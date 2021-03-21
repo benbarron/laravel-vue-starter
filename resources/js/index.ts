@@ -8,6 +8,10 @@ import Root from './components/Root.vue';
 import store from './store';
 import AxiosDetect from './utils/AxiosDetect';
 import { router } from './router';
+import firebase from 'firebase';
+import config from './config';
+
+firebase.initializeApp(config.db);
 
 Vue.use(Vuetify);
 Vue.component('root', Root);
@@ -50,12 +54,12 @@ const app: Vue = new Vue({
   mounted() {
     AxiosDetect.init(
       () => {
-        // this.$Progress.start();
-        this.$store.commit('showLoader');
+        this.$Progress.start();
+        // this.$store.commit('showLoader');
       },
       () => {
-        // this.$Progress.finish();
-        this.$store.commit('hideLoader');
+        this.$Progress.finish();
+        // this.$store.commit('hideLoader');
       }
     );
   }

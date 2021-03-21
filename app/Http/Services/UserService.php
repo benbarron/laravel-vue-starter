@@ -7,16 +7,17 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
 use Exception;
 
-class UserService {
+class UserService
+{
 
     /**
      * @param $id
      * @return User
      */
-	public function allButSelf($id)
+    public function allButSelf($id)
     {
-		return User::where('id', '!=', $id)->get()->map->format();
-	}
+        return User::where('id', '!=', $id)->get()->map->format();
+    }
 
     /**
      * @param string $name
@@ -26,20 +27,21 @@ class UserService {
      * @throws Exception
      * @return User
      */
-	public function create(string $name, string $email, string $password, int $role)
+    public function create(string $name, string $email, string $password, int $role)
     {
-		if($this->existsWithEmail($email)) {
-			throw new Exception('Account exists with email '.$email);
-		}
-		$user = new User();
-		$user->name = $name;
-		$user->email = $email;
-		$user->password = Hash::make($password);
+        if ($this->existsWithEmail($email)) {
+            throw new Exception('Account exists with email ' . $email);
+        }
+        $user = new User();
+        $user->name = $name;
+        $user->email = $email;
+        $user->password = Hash::make($password);
         $user->api_token = Str::random(60);
+        $user->room_id = Str::random(20);
         $user->role = $role;
-		$user->save();
-		return $user;
-	}
+        $user->save();
+        return $user;
+    }
 
     /**
      * @param string $id
@@ -49,42 +51,42 @@ class UserService {
      * @return mixed
      * @throws Exception
      */
-	public function update(string $id, string $name, string $email, int $role)
+    public function update(string $id, string $name, string $email, int $role)
     {
-		if($this->existsWithEmailAndNotId($id, $email)) {
-			throw new Exception('Account exists with email '.$email);
-		}
-		$user = User::where('id', '=', $id)->firstOrFail();
-		$user->name = $name;
-		$user->email = $email;
-		$user->role = $role;
-		$user->save();
-		return $user;
-	}
+        if ($this->existsWithEmailAndNotId($id, $email)) {
+            throw new Exception('Account exists with email ' . $email);
+        }
+        $user = User::where('id', '=', $id)->firstOrFail();
+        $user->name = $name;
+        $user->email = $email;
+        $user->role = $role;
+        $user->save();
+        return $user;
+    }
 
     /**
      * @param string $id
      */
-	public function deleteById(string $id)
+    public function deleteById(string $id)
     {
-		User::where('id', '=', $id)->delete();
-	}
+        User::where('id', '=', $id)->delete();
+    }
 
     /**
      * @param string $email
      * @return bool
      */
-	public function existsWithEmail(string $email)
+    public function existsWithEmail(string $email)
     {
-		$existingUser = User::where('email', '=', $email)->get();
-		return count($existingUser) > 0;
-	}
+        $existingUser = User::where('email', '=', $email)->get();
+        return count($existingUser) > 0;
+    }
 
     /**
      * @param $id
      * @return mixed
      */
-	public function findById($id)
+    public function findById($id)
     {
         return User::where('id', '=', $id)->firstOrFail();
     }

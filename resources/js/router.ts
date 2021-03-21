@@ -5,6 +5,7 @@ import Home from './pages/Home.vue';
 import Users from './pages/Users.vue';
 import UsersCreate from './pages/UsersCreate.vue';
 import UsersEdit from './pages/UsersEdit.vue';
+import Meeting from './pages/Meeting.vue';
 
 Vue.use(VueRouter);
 
@@ -29,6 +30,13 @@ const routes = [
     icon: null,
     name: 'admin.users.create',
     component: UsersCreate
+  },
+  {
+    label: 'Meeting',
+    path: '/meeting',
+    icon: null,
+    name: 'dashboard.meeting',
+    component: Meeting
   },
   {
     label: 'Edit User',

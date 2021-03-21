@@ -19,7 +19,6 @@ use Illuminate\Http\Response;
  */
 class UserController extends Controller
 {
-
     /**
      * @var UserService
      */

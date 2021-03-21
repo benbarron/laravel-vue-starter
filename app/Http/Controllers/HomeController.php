@@ -14,7 +14,6 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-
     }
 
     /**
@@ -25,17 +24,17 @@ class HomeController extends Controller
      */
     public function vue(Request $request)
     {
-        return view('admin.layout', [
+        return view('site.dashboard', [
             'token' => $request->user()->api_token,
             'name' => config('app.name', 'Laravel')
         ]);
     }
 
     /**
-    * Show the landing page
-    *
-    * @return Renderable
-    */
+     * Show the landing page
+     *
+     * @return Renderable
+     */
     public function site()
     {
         return view('site.home');
